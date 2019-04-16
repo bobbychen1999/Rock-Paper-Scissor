@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta charset="utf-8">
+<title>Chatroom</title>
+
+	<style>
+		
+		textarea {
+	width: 80%;
+	height: 50px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	font-size: 16px;
+	resize: none;
+}
+
+	#send, #message_input{
+		overflow: hidden;
+		display: inline-block;
+		vertical-align: middle;
+
+	}
+	#createroom {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#createroom:hover {opacity: 1}
+
+#computer {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#computer:hover {opacity: 1}
+
+#joinroom {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#joinroom:hover {opacity: 1}
+#viewranks {
+  background-color: #eb8221;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#viewranks:hover {opacity: 1}
+#search {
+  background-color: #eb8221;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#search:hover {opacity: 1}
+#changepassword {
+  background-color: #614f4a;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#changepassword:hover {opacity: 1}
+
+#invite {
+  background-color: #0da3df;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#invite:hover {opacity: 1}
+
+#send {
+  background-color: #24e6cc;
+  border: none;
+  color: white;
+  height : 50px;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#send:hover {opacity: 1}
+	
+
+#rock {
+  background-color: #5a92f8;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#rock:hover {opacity: 1}
+
+#paper {
+  background-color: #15aa96;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#paper:hover {opacity: 1}
+
+#scissor {
+  background-color: #19c99d;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#scissor:hover {opacity: 1}
+	</style>
+
+
+    <body>
+
+			
+
+	
+	<div id = "login">
+			<input type="text" id="username" placeholder="Username" />
+	<input type="password" id="password" placeholder="Password" />
+	<button id="login_btn">Log In</button>
+	
+	<br>
+	
+	<input type="text" id="newusername" placeholder="newusername" />
+	<input type="password" id="newpassword" placeholder="newpassword" />
+	<button id="register_btn">Register</button>
+	
+	</div>
+		
+        <label id="user">no user</label><br>
+		<label id="room">lobby</label><br>
+		<!--
+		<input type ="text" id="username" placeholder="username"/>
+		<input type ="password" id="pwd" placeholder="password"/>
+		<input type = "button" id="login_btn" value = "login"/><br><br>
+		<input type ="text" id="newusername" placeholder="newusername"/>
+		<input type ="password" id="newpwd" placeholder="newpassword"/>
+		<input type = "button" id="register_btn" value = "register"/><br><br>-->
+			<div id="room_info">
+					<input type="text" id="getRoomName" placeholder="enter a roomname here"/>
+					<input type="password" id="getPassword" placeholder="enter password here"/>
+					<input type="button" id="createroom" value="create room"/>
+					<input type="button" id="joinroom" value="join room"/>			
+			</div>
+			<button id="changepassword">change password</button><br>
+
+	   
+		<!--<input type="button" id="backlobby" value= "back to lobby"/><br><br>
+			-->
+			<input type="button" id="computer" value="play with a computer player"/><br>
+
+	    <input type="text" id="anotheruser" placeholder="enter a user's name here"/>
+		<input type="button" id="search" value="Profile"/>
+		<button id="viewranks" onclick="viewranks()">view ranks</button><br>
+		<input type="button" id="invite" value="invite this user to play!"/>
+		<br><br>
+		<div id = "communication">
+				<button id="rock">rock</button>
+				<button id="paper">paper</button>
+				<button id="scissor">scissor</button>
+				<div id="rooms"></div>
+				<div id="users"></div>
+				<div id="message_content">
+					<textarea id="message_input" placeholder="type a message"></textarea>
+					<button id = "send">send</button><br>
+				</div>
+
+		</div>
+		
+		<div id="log"></div>
+		
+	
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+		<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+
+		
+<script>
+ var socketio = io.connect();
+
+
+	 var user = "";
+	 var user_pwd = "";
+	 //before login
+$("#anotheruser").hide();
+$("#computer").hide();
+$("#search").hide();
+$("#viewranks").hide();
+$("#changepassword").hide();
+
+$("#room_info").hide();
+$("#invite").hide();
+$("#communication").hide();
+
+
+
+
+//sql
+
+		user_temp = document.getElementById("newusername").value;
+
+document.getElementById("register_btn").addEventListener("click", function(event) {
+
+  const username = document.getElementById("newusername").value; // Get the username from the form
+  const password = document.getElementById("newpassword").value; // Get the password from the form
+	socketio.emit("register_sql",{from:user_temp,username:username, password:password});
+	
+});
+
+socketio.on("register_response", function(data){
+	
+	if (data["message"] == "successfully registered") {
+				//user = user_temp;
+				//document.getElementById("user").innerHTML = user_temp;
+				user_temp = "";
+				alert("success");
+				return;
+			}
+			else {
+				user_temp = "";
+				alert("fail");
+				//register();
+			}
+
+});
+
+var p_temp;
+	//var user_templogin = document.getElementById("username").value;
+var u_temp;
+document.getElementById("login_btn").addEventListener("click", function(event) {
+
+const username = document.getElementById("username").value; // Get the username from the form
+const password = document.getElementById("password").value; // Get the password from the form
+p_temp = password;
+u_temp = username;
+  socketio.emit("login_sql",{from:username,username:username, password:password});
+  
+});
+
+//retrieve the response from server about users info
+socketio.on("login_response", function(data){
+	//alert("p "+ password);
+  if (data["result"] == p_temp) {
+			  user = u_temp;
+			  user_pwd = p_temp;
+			  ReactDOM.render(
+				  u_temp,
+					document.getElementById("user")
+			  );
+			  //document.getElementById("user").innerHTML = u_temp;
+			  u_temp = "";
+			  p_temp = "";
+			  //user_templogin = "";
+			  alert("success");
+			  $("#login").hide();
+			  $("#anotheruser").show();
+			$("#computer").show();
+			$("#search").show();
+			$("#viewranks").show();
+			$("#changepassword").show();
+
+			$("#room_info").show();
+			$("#invite").hide();
+			$("#communication").hide();
+
+			  return;
+		  }
+		  else if (data["result"] == p_temp){
+			  u_temp = "";
+			  p_temp = "";
+			  alert("fail");
+			  //register();
+		  }
+
+});
+
+
+
+
+
+
+
+
+
+//send the data to the server
+//play against computer
+document.getElementById("computer").addEventListener("click", function(event) {
+	alert("playing with a computer");
+	var pw = 0;
+	var cw = 0;
+	//document.getElementById("room").innerHTML = "practice against a computer";
+	while (pw < 2 && cw < 2) {
+		var action = "";
+		while (action != 'r' && action != 'p' && action != 's') {
+			action = prompt("what do you want to play? type 'r','p','s' please");
+		}
+		var temppp = Math.random();
+		if (temppp < 0.333333) {
+			alert("You won this round");
+			pw++;
+		}
+		else if (temppp < 0.666667) {
+			alert("Tie");
+		}
+		else {
+			alert("You lost this round");
+			cw++;
+		}
+	}
+	if (cw == 2) {
+		alert("You lost");
+	}
+	else alert("You won");
+	alert("entering the lobby");
+	var lob = "lobby";
+	ReactDOM.render(
+				  lob,
+				document.getElementById("room")
+			  );
+	//document.getElementById("room").innerHTML = "lobby";
+});
+
+ var room = "";
+ var user_temp = "";
+ var round = false;
+
+
+//send the data to the server
+
+ document.getElementById("changepassword").addEventListener("click", function(event) {
+	var currpwd = prompt("Please verify your current password");
+	var newpwd = prompt("What would you choose to be your new password?");
+	if(currpwd == user_pwd){
+		socketio.emit("change_sql", {from: user, currpwd: currpwd, newpwd: newpwd});
+	}else{
+		alert("wrong pwd");
+	}
+ });
+
+//retrieve the response from server about users info
+
+ socketio.on("change_response", function(data){
+	if (data["message"] == "success") {
+		alert(data["message"]);
+	}else{
+		alert("fail");
+	}
+ });
+
+
+
+	function viewranks() {
+		socketio.emit("viewranks", {from: user});
+	}
+	socketio.on("viewranks_response", function(data) {
+		if (data["to"] == user) {
+			alert(data["message"]);
+		}
+	});
+//retrieve the response from server about users info
+
+socketio.on("search_response", function(data){
+	if(data["to"]==user){
+		alert(data["message"]);
+	}
+});
+
+//retrieve the response from server about users info
+
+	socketio.on("action_response", function(data) {
+		if (data["room"] == room) {
+			document.getElementById("log").appendChild(document.createElement("hr"));
+			document.getElementById("log").appendChild(document.createTextNode(data["message"]));
+		}
+	});
+
+	
+
+
+//send the data to the server
+
+document.getElementById("search").addEventListener("click", function(event){
+
+	var who = document.getElementById("anotheruser").value;
+		if(who != ""){
+		socketio.emit("search_server", {username:who, room:room, from: user});
+		}else{
+			alert("input is empty");
+		}
+	round = false;
+});
+
+
+
+//retrieve the response from server about users info
+
+		socketio.on("end_game", function(data) {
+			if (data["to"] == user) {
+				alert(data["message"]);
+				room = "lobby";
+				ReactDOM.render(
+				  room,
+					document.getElementById("room")
+			  );
+				alert("You are back to the lobby!");
+				$("#login").hide();
+			  $("#anotheruser").show();
+			$("#computer").show();
+			$("#search").show();
+			$("#viewranks").show();
+			$("#changepassword").show();
+
+			$("#room_info").show();
+			$("#invite").hide();
+			$("#communication").hide();
+			ReactDOM.render(
+				  "",
+				document.getElementById("log")
+			  );
+
+			}
+		});
+            //retrieve the response from server about users info
+
+            socketio.on("require_action", function(data){
+		        if (data["room"] == room) {
+					round = true;
+					alert("You can play this round. Let battle be joined!");
+				}
+            });
+			socketio.on("message_response", function(data){
+				if (room == data["room"]) {
+					document.getElementById("log").appendChild(document.createElement("hr"));
+					document.getElementById("log").appendChild(document.createTextNode(data['message']));
+				}
+			});
+            document.getElementById("send").addEventListener("click", function(event){
+                if (document.getElementById("message_input").value == "") {
+                    alert("Your message is empty!");
+					return;
+                }
+				socketio.emit("message_request", {from: user, room: room, message: document.getElementById("message_input").value});
+				document.getElementById("message_input").value = "";
+            });
+			socketio.on("invite_response", function(data){
+    if(data["receiver"]==user){
+        alert(data["sender"]+data["message"] + "Room: "+ data["room"]+ "; the password is: "+data["pwd"]);
+    }
+});
+
+
+//retrieve the response from server about users info
+
+socketio.on("join_response",function(data){
+    var message = data["message"];
+    var u = data["to"];
+    var rroom = data["new_room"];
+    if(u == user){
+        alert(message);
+            if(message == "success"){
+                alert("You have joined the room");
+				ReactDOM.render(
+				  rroom,
+					document.getElementById("room")
+			  );
+				$("#invite").show();
+				$("#communication").show();
+				$("#room_info").hide();
+				$("#search").hide();
+				$("#viewranks").hide();
+				room = rroom;
+            }
+			round = false;
+    }
+});
+//retrieve the response from server about users info
+
+socketio.on("create_response", function(data){
+		var message = data["message"];
+		var u = data["to"];
+		if (u == user) {
+		round = false;
+			alert(message);
+			if (message == "room created") {
+				room = data["room"];
+				alert("You have entered room: " + room);
+				ReactDOM.render(
+				  room,
+					document.getElementById("room")
+			  );
+				//document.getElementById("room").innerHTML = "current room: "+room;
+				//room created
+				$("#invite").show();
+				$("#communication").show();
+				$("#room_info").hide();
+				$("#search").hide();
+				$("#viewranks").hide();
+			}
+		}
+	});
+	//send the data to the server
+
+	document.getElementById("createroom").addEventListener("click", function(event){
+	alert("creating");
+	var roomname = document.getElementById("getRoomName").value;
+	if(roomname==""){
+		alert("invalid input");
+		round = false;
+		return;
+	}
+	var pwd=document.getElementById("getPassword").value;
+	socketio.emit("create_request", {roomname:roomname, pwd: pwd, from: user});
+	round = false;
+});
+
+//send the data to the server
+
+document.getElementById("joinroom").addEventListener("click", function(event){
+	var roomname = document.getElementById("getRoomName").value;
+	var pwd = document.getElementById("getPassword").value;
+	if(roomname==""){
+		alert("invalid input");
+		return;
+	}
+	socketio.emit("join_request", {roomname:roomname, pwd:pwd, from: user});
+	round = false;
+});
+//send the data to the server
+
+document.getElementById("invite").addEventListener("click", function(event){
+    var who = document.getElementById("anotheruser").value;
+		if(who != ""){
+		socketio.emit("invite_server", {sender:user, receiver:who, room:room});
+		document.getElementById("anotheruser").value = "";
+		}else{
+			alert("input is empty");
+		}
+	round = false;
+});
+//send the data to the server
+
+document.getElementById("rock").addEventListener("click", function(event) {
+	if (round) {
+		round = false;
+		socketio.emit("action_request", {from:user, action:"r",room:room});
+		alert("You have moved, waiting for opponent...");
+	}
+	else alert("It is not your round yet");
+});
+//send the data to the server
+
+document.getElementById("paper").addEventListener("click", function(event) {
+	if (round) {
+		round = false;
+		socketio.emit("action_request", {from:user, action:"p",room:room});
+		alert("You have moved, waiting for opponent...");
+	}
+	else alert("It is not your round yet");
+});
+//send the data to the server
+
+document.getElementById("scissor").addEventListener("click", function(event) {
+	if (round) {
+		round = false;
+		socketio.emit("action_request", {from:user, action:"s",room:room});
+		alert("You have moved, waiting for opponent...");
+	}
+	else alert("It is not your round yet");
+});
+
+
+
+
+</script>		
+
+    </body>
+</html>
