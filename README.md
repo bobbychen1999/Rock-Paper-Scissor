@@ -1,44 +1,26 @@
-Online Person vs Person Simple Game Playing Platform  
+# Rock-Paper-Scissor #
 
-The platform is designed to be a interactive place where people can play rock-paper-scissors  
+### What is this repository for? ###
 
-Bobby Chen (451980) && Martin Zhang (457172)
+* Bobby Chen's repo for online rock-paper-scissor website
 
-Rubric
+### How do I get set up? ###
 
-uses of react JS as frontend framework 10pts  
+* download the files, run cp_server.js using node.js
+* type your address + ":3456/cp_client.html" in your browser
 
-users can sign up with a unique username and a corresponding password to protect the account 2pts  
+### Contribution guidelines ###
 
-users can login with his/her username and password 3pts  
+* User must sign up with a unique username and corresponding password
+* User can log in with those credentials, and can change password (current password required)
+* User can create a room with a room name (must be unique). The room can have an optional password to make it private
+* When another user enters the room, game begins. The player who achieves two wins first will be the winner.
+* User can visit his/her or others' profiles to check their records
+* A rank list of all registerd users is in the lobby
+* User can play with computer
+* User can invite another to join his/her room and play
+* Users can chat with each other during a game session
 
-users can change pwd(verifying the current password will be required) 5pts  
+### Who do I talk to? ###
 
-maintain a sql database to store the user's info 5pts
-
-users can create a room with a unique room name 10pts   
-
-users can create a room with pwd making the room private 5pts  
-
-Up to two users can be in the same room to play rock-paper-scissors 10pts  
-
-The game will end when one player wins twice and automatically leads to the lobby 5pts  
-
-users can visit others' profiles to check their winning rate 5pts
-
-A rank list of all users will be shown in the lobby 10pts  
-
-Good use of html and css 5pts  
-
-best practices 5pts:  
-
-code is well formatted with comments 3pts  
-Pass html validator 2pts  
-
-Creative portion 15pts:  
-
-users can play with computer instead of other user (5pts)  
-users can invite others to play (5pts)  
-users can chat when they play in the room (5pts)
-
-Approved by Jiaming Hu(456966)
+* Bobby Chen email chen.jiazhi@wustl.edu, cell 314-556-4976 
